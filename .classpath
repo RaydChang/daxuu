@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="D:/Apps/WorkspaceManuan/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/Apps/WorkspaceManuan/lib/jaxen-1.1-beta-6.jar"/>
+	<classpathentry kind="lib" path="D:/Apps/WorkspaceManuan/lib/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="D:/Apps/WorkspaceManuan/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/Apps/WorkspaceManuan/lib/sqlitejdbc.jar"/>
+	<classpathentry kind="lib" path="D:/Apps/WorkspaceManuan/lib/sqlitejdbc-v056.jar"/>
+	<classpathentry kind="lib" path="D:/Apps/WorkspaceManuan/lib/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="D:/Apps/WorkspaceManuan/lib/sqljdbc.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
