@@ -13,14 +13,13 @@ package Framework.CodeRobot;
  */
 import Framework.util.GUID;
 public class Coder {
-private static final Coder _coder = new Coder();
+	private static final Coder _coder = new Coder();
 
     private  Coder() {
     }
     public static Coder getCoder(){
         return _coder;
     }
-
     public String  getGUID(){
         return  GUID.NewId();
     }
