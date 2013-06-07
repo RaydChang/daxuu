@@ -35,7 +35,7 @@
 * @namespace myui
 */
 (function($) {
-    //第一个叶签为固定首页，从2开始起跳
+    //第一个页签为固定首页，从2开始起跳
     var tabCounter = 2;
     $.myui.ap = {
         /** 

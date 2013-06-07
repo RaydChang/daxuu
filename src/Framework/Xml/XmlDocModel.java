@@ -194,6 +194,27 @@ public class XmlDocModel {
         this.setDocument(doc);
         return doc;
     }
+    
+    
+    /**
+     * load
+     * 载入一个xml格式字串
+     * @return 成功返回Document对象，失败返回null
+     * @param s_content  xml格式字串
+     */
+    public Document loadXml(String s_content) {
+    	byte[]  byteArrResponse = s_content.getBytes();
+        Document doc = null;
+        try {
+            String strArrResponse = new String(byteArrResponse);  
+            doc = DocumentHelper.parseText(strArrResponse); 
+        } catch (Exception ex) {
+            //ex.printStackTrace();
+        }
+        this.setDocument(doc);
+        return doc;
+    }
+    
     /*
     <?xml version="1.0" encoding="utf-8"?>
     <xconfig>

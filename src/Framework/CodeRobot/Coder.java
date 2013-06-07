@@ -16,6 +16,7 @@ public class Coder {
 	private static final Coder _coder = new Coder();
 
     private  Coder() {
+    	
     }
     public static Coder getCoder(){
         return _coder;
