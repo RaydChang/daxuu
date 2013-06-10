@@ -196,8 +196,10 @@ public class NOInfo {
 	 * @param s_format
 	 *            格式样式字串
 	 * @return 格式化日期后的日期，若有异常返回错误
-	 * @author rayd 创建时间：Jun 7, 2013 2:54:10 PM 修改人：rayd 修改时间：Jun 7, 2013
-	 *         2:54:10 PM 修改备注：
+	 * @author rayd 
+	 * @创建时间：Jun 7, 2013 2:54:10 PM
+	 * @修改人：rayd 修改时间：Jun 7, 2013 2:54:10 PM 
+	 * @note：
 	 * @version
 	 * 
 	 */
