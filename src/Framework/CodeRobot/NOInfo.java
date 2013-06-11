@@ -6,6 +6,9 @@ package Framework.CodeRobot;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.io.*;
+
+import Framework.Data.Global;
 import Framework.Xml.*;
 //dom4j包
 import Framework.logger.MyLogger;
@@ -21,7 +24,7 @@ import org.dom4j.*;
  * 
  * 项目名称：Framework 类名称：NOInfo 类描述：编码器
  * 
- * @author rayd 创建时间：Jun 7, 2013 2:44:44 PM 修改人：rayd 修改时间：Jun 7, 2013 2:44:44 PM
+ * @author lucky 创建时间：Jun 7, 2013 2:44:44 PM 修改人：lucky 修改时间：Jun 7, 2013 2:44:44 PM
  *         修改备注： 待加强功能 1.保存XML文件用Cache，减少读写硬盘的次数 2.
  * @version
  * 
@@ -93,22 +96,25 @@ public class NOInfo {
 
 	/**
 	 * 
-	 * 功能概述：
+	 * 功能概述：自动依照设定规则产生编码
+	 * 1.存放规则的xml文件位置在应用系统根目录:/data/codeset/*.xml，名称全部为小写
+	 * 2.模板(template.xml)必须先存在
 	 * 
 	 * @param s_filepath
-	 *            編碼規則的XML文件路徑
+	 *            編碼規則的XML文件路徑或关键值,注意文件名全部为小写,若无匹配xml文件，会以模板(template.xml)自动产生
 	 * @param i_count
-	 *            批量取得，
+	 *            可批量产生的个数，若一次只需要一个，传入1
 	 * @return 编码值,若i_count大于1，则返回以逗号（“，”）分隔的多个值
-	 * @author rayd 创建时间：Jun 7, 2013 2:56:57 PM 修改人：rayd 修改时间：Jun 7, 2013
+	 * @author lucky 创建时间：Jun 7, 2013 2:56:57 PM 
+	 *  修改人：lucky 修改时间：Jun 7, 2013
 	 *         2:56:57 PM 修改备注：
-	 * @version
+	 *         
+	 * @version 1.0
 	 * 
 	 */
 	public String MakeCode(String s_filepath, int i_count) {
-		String ret = "";
-		XmlDocModel xCode = new XmlDocModel();
-		xCode.load(s_filepath);
+		
+		String fileName = "";
 		StringBuilder sbCode = new StringBuilder();
 		// String[] values = new String[10];
 		int i = 0;
@@ -118,15 +124,40 @@ public class NOInfo {
 		String kind = "";
 		String oldValue = "";
 		String pre = "";
-		String nextVal = "";
-
+		String nextVal="";
+		String path = Global.AppDir()+"/data/codeset/";
+		XmlDocModel xCode = new XmlDocModel();
+		
+		//目录
+		File dir = new File(path);
+		if(!dir.exists()){
+			dir.mkdirs();
+		}
+		//文件
+		//指定了目录及完整的文件名称
+		if(s_filepath.indexOf('/')>=0){
+			fileName = s_filepath.toLowerCase();
+		}else{
+			fileName = path + s_filepath.toLowerCase() + ".xml";
+		}
+		File file = new File(fileName);
+		if(file.exists()){
+			xCode.load(fileName);
+		}else{
+			//套用模板
+			XmlDocModel xTmpl = new XmlDocModel();
+			xTmpl.load(path + "template.xml");
+			xCode.loadXml(xTmpl.getDocument().asXML());
+		}
 		DecimalFormat df = new DecimalFormat();
 		Document doc = xCode.getDocument();
 		Element root = doc.getRootElement();
+		
+
 
 		for (Iterator<?> it = root.elementIterator(); it.hasNext();) {
 			el = (Element) it.next();
-			kind = el.getText().toLowerCase();
+			kind = el.getText();
 			if (kind.equalsIgnoreCase("$date")) {
 
 				oldValue = el.attribute("value").getValue();
@@ -153,7 +184,8 @@ public class NOInfo {
 						.getValue());
 
 				if (this.needBegin) {
-					this.nextValue = 1;
+					this.nextValue = 0;
+					currentValue = 0;
 					this.needBegin = false;
 				}else{
 					// 將下一個值設定成當前值
@@ -167,8 +199,8 @@ public class NOInfo {
 					nextVal = el.attribute("format") != null?df.format(this.nextValue + j):Integer.toString(this.nextValue + j);
 					
 					if (j==1) {
-						sbCode.append(df.format(this.nextValue + j));
 						pre = sbCode.toString();
+						sbCode.append(df.format(this.nextValue + j));
 					}else{
 						sbCode.append(",");
 						sbCode.append(pre);
@@ -185,7 +217,7 @@ public class NOInfo {
 			}
 		}
 		//保存文件
-		xCode.Save(doc, s_filepath);
+		xCode.Save(doc, fileName);
 		return sbCode.toString();
 	}
 
@@ -196,9 +228,9 @@ public class NOInfo {
 	 * @param s_format
 	 *            格式样式字串
 	 * @return 格式化日期后的日期，若有异常返回错误
-	 * @author rayd 
+	 * @author lucky 
 	 * @创建时间：Jun 7, 2013 2:54:10 PM
-	 * @修改人：rayd 修改时间：Jun 7, 2013 2:54:10 PM 
+	 * @修改人：lucky 修改时间：Jun 7, 2013 2:54:10 PM 
 	 * @note：
 	 * @version
 	 * 

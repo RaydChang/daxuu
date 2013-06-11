@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="/media/lucky/DATA/Apps/ebridge/javalib/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="/media/lucky/DATA/Apps/ebridge/javalib/sqljdbc4.jar"/>
 	<classpathentry kind="lib" path="/media/lucky/DATA/Apps/ebridge/javalib/GroboUtils-5-core.jar"/>
+	<classpathentry kind="lib" path="/media/lucky/DATA/Apps/ebridge/javalib/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
