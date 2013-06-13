@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<appconfig>
-<path>codeset</path>
-<db_eq_classname>org.sqlite.JDBC</db_eq_classname>
-<db_eq_url>jdbc:sqlite:/home/lucky/EQ.db</db_eq_url>
-</appconfig>

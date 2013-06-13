@@ -51,15 +51,15 @@ public class Global {
     {
         String ret = null;
     	XmlDocModel xConfig = new XmlDocModel();
-    		//xConfig.load("/media/lucky/DATA/Apps/ebridge/Workspace-Man/Framework/src/Framework/Data/app.cfg.xml");
-    		xConfig.load(getAppDir()+"/src/Framework/Data/app.cfg.xml");
-    		Document doc = xConfig.getDocument();
-    		//Element root = doc.getRootElement();
-    		
-    		org.dom4j.Node nd = doc.selectSingleNode("/appconfig/"+argKey);
-    		if(nd!=null){
-    			ret = nd.getText();
-    		}
+		//xConfig.load("/media/lucky/DATA/Apps/ebridge/Workspace-Man/Framework/src/Framework/Data/app.cfg.xml");
+		xConfig.load(getAppDir()+"/data/config/app.cfg.xml");
+		Document doc = xConfig.getDocument();
+		//Element root = doc.getRootElement();
+		
+		org.dom4j.Node nd = doc.selectSingleNode("/appconfig/"+argKey);
+		if(nd!=null){
+			ret = nd.getText();
+		}
     		
          return ret;
     }

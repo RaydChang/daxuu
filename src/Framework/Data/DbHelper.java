@@ -96,7 +96,7 @@ public class DbHelper {
             rs = st.executeQuery(argSql);
             if (!rs.wasNull()) {
                 ret=new XmlDocModel();
-                ret.ToXml(rs);
+                //ret.ToXml(rs);
             }
 
             // ret.Save(ret.getDocument(),"test.xml");

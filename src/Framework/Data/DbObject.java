@@ -80,7 +80,8 @@ public class DbObject {
         //沒有緩存
         if (ret.load(path) == null) {
 
-            _TableSchema = ret.CreateSchema(tableName, dbName);
+        	//remark temp
+            //_TableSchema = ret.CreateSchema(tableName, dbName);
         } else {
             _TableSchema = ret;
 
